@@ -1,0 +1,2 @@
+import{w as o,u as i,R as t}from"./index-CBvv1-Ed.js";import{Y as m}from"./YScaleBars-CYmqmrd0.js";import"./util-Dcrz2d5e.js";async function g(e,a,n){await o(()=>!!e.stats&&!!e.regionCannotBeRenderedText);const{offsetPx:r}=i.getContainingView(e);return t.createElement(t.Fragment,null,t.createElement("g",{id:"snpcov"},await n(a)),t.createElement("g",{transform:`translate(${Math.max(-r,0)})`},t.createElement(m,{model:e,orientation:"left",exportSVG:!0})))}export{g as renderSvg};
+//# sourceMappingURL=renderSvg-BdQ9BMzb.js.map

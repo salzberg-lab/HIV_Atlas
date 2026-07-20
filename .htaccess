@@ -1,0 +1,39 @@
+# Specify options for this directory
+# -Indexes: Prevents users from seeing a list of files in a directory.
+# +FollowSymLinks: This is often required for the rewrite engine to work correctly.
+Options -Indexes +FollowSymLinks
+
+# Turn on the rewrite engine
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Define the base path of your application
+  RewriteBase /HIV_Atlas/
+
+  # Always serve sitemap and robots directly
+  RewriteRule ^sitemap\.xml$ - [L]
+  RewriteRule ^robots\.txt$ - [L]
+
+  # Do not apply rules to files or directories that already exist on the server
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # For all other requests, redirect to index.html so React Router can handle it
+  RewriteRule . index.html [L]
+</IfModule>
+
+# Ensure correct MIME types for SEO files
+<FilesMatch "^(robots\.txt|sitemap\.xml)$">
+  <IfModule mod_headers.c>
+    Header set X-Robots-Tag "index, follow"
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </IfModule>
+</FilesMatch>
+
+<Files "robots.txt">
+  ForceType text/plain
+</Files>
+
+<Files "sitemap.xml">
+  ForceType application/xml
+</Files>
